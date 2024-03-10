@@ -6,6 +6,7 @@
     <title>Expence Tracker</title>
     <link rel="stylesheet" href="styles/style.css">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<script defer src="/scripts/scripts.js"></script>
 </head>
 <body>
     <div class="sidebar">
@@ -127,10 +128,24 @@
                             <th>Currency Paid</th>
                             <th>Payer</th>
                             <th>Payee</th>
+                            <th>Action</th>
                         </tr>
-                            </thead>
-                        <tbody>
-                    </tbody>
+                                </thead>
+                            <tbody>
+                        </tbody>
+                    <tfoot>
+                       <tr>
+                        <td colspan="7" id="total">Total: $0.00
+                            <button type="button" id="add-transaction" onclick="addPopup()">Add</button>
+                            <div class="popup" id="transaction-popup">
+                                <img src="assets/404-tick.png"/>
+                                <h2>Thank You!</h2>
+                                <p>Your details has been successfully submitted. Thanks!</p>
+                                <button type="button" onclick="closePopup()">OK</button>
+                            </div>
+                        </td>
+                       </tr> 
+                    </tfoot>
                 </table>
             </div>
         </div>
