@@ -56,7 +56,17 @@
             <i class="fa-solid fa-search"></i>
             <input type="text" placeholder="Search"/>
             </div>
-            <i class="fas fa-dollar-sign icon"></i>
+            <div class="dropdown-div">
+            <ul>
+                <li><a id="EURO" class="active-currency" onclick="UpdateCurrency(this)">USD</a>
+                <ul class="dropdown">
+                   <li><a id="EURO" onclick="UpdateCurrency(this)">EURO</a></li>
+                   <li><a id="LBP" onclick="UpdateCurrency(this)">LBP</a></li>
+                   <li><a id="AED" onclick="UpdateCurrency(this)">AED</a></li>
+                </ul>
+                </li>
+                </div>
+            </ul>
             </div>
         </div>
         <div class="card-container">
@@ -132,7 +142,17 @@
                         </tr>
                                 </thead>
                             <tbody id="tbody">
-                                <p></p>
+                                <tr id = "tr">
+                                    <td id="tdate">2</td>
+                                    <td id="tTransactionType">2</td>
+                                    <td id="tAmount">2</td>
+                                    <td id="tCurrency Paid">2</td>
+                                    <td id="tPayer">2</td>
+                                    <td id="tPayee">2</td>
+                                    <td id="tAction"><i class="fa-regular fa-pen-to-square row-edit"></i>
+                                    <i id= "row-remover" class="fa-regular fa-xmark row-remove" onclick="removeRow(this.id)"></i>
+                                    </td>
+                                    </tr>
                         </tbody>
                     <tfoot>
                        <tr>
@@ -150,26 +170,6 @@
                                     <div class="form-field">
                                         <h3>Amount:</h3><input id="amount" type="text" placeholder="Amount" required/>
                                     </div>
-                                    <!-- <div class="form-field dropdown">
-                                        <h3>Curreny:</h3>
-                                        <button type="button" id="main-button" onclick="openCurrencyMenu()">USD</button> -->
-                                        <!-- <div class="select">
-                                            <span class="selected">USD</span>
-                                            <div class="caret"></div>
-                                        </div>
-                                        <ul class="menu-currency">
-                                            <li>EURO</li>
-                                            <li>AED</li>
-                                            <li>LBP</li>
-                                            <li class="active">USD</li>
-                                        </ul> -->
-                                    <!-- </div>
-                                    <div id="content" class="content">
-                                        <li id="euro" class="" onclick="">EURO</li>
-                                        <li id="aed" class="" onclick="">AED</li>
-                                        <li id="lbp" class="" onclick="">LBP</li>
-                                        <li id="usd" class="" onclick="">USD</li>
-                                    </div> -->
                                     <div class="form-field">
                                         <h3>Currency:</h3><input id="currency-paid" type="text" placeholder="EURO/AED/LBP/USD" required/>
                                     </div>

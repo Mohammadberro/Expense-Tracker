@@ -487,3 +487,52 @@ tfoot td{
     padding-bottom: 20px;
     cursor: pointer;
 }
+
+.row-remove{
+    cursor: pointer;
+}
+
+.row-edit{
+    cursor: pointer;
+}
+
+.dropdown-div ul{
+    list-style: none;
+    background: rgba(113, 99, 186, 255);
+}
+
+.dropdown-div ul li{
+
+    display: inline-block;
+    position: relative;
+}
+
+.dropdown-div ul li a{
+    display: block;
+    padding: 10px 20px;
+    color: #FFF;
+    text-decoration: none;
+    text-align: center;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.dropdown-div ul li ul.dropdown li{
+    display: block;
+}
+
+.dropdown-div ul li ul.dropdown{
+    width: 100%;
+    background: rgba(113, 99, 186, 255);
+    position: absolute;
+    z-index: 999;
+    display: none;
+}
+
+.dropdown-div ul li a:hover{
+    opacity: 60%;
+}
+
+.dropdown-div ul li:hover ul.dropdown{
+    display: block;
+}

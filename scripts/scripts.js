@@ -25,7 +25,6 @@ let expense = [];
 let incomeTotal = getSum(income);
 let expenseTotal = getSum(expense);
 let netIncome = incomeTotal - expenseTotal;
-
 let transaction={
     id:"",
     transDate: "",
@@ -48,6 +47,7 @@ let payer = document.getElementById("payer");
 let payee = document.getElementById("payee");
 let transactionForm = document.getElementById("transaction-form")
 let bodyTable = document.getElementById("tbody");
+const rowRemover = document.querySelectorAll(".row-remove");
 
 function loadData(){
     allTransaction = JSON.parse(localStorage.getItem("transactions"));
@@ -173,3 +173,28 @@ function updateIncome(transaction){
         income.push(transaction.transAmount);
     }
 }
+
+function removeRow(id){
+    id.closest('tr').remove;
+}
+
+// function updateCurrency(this){
+//     newCurrency = this.innerText
+
+// }
+
+function getCurrencyObject(URL){
+    let currencyData = fetch(URL)
+     .then(res =>{
+        if(res.ok){
+            console.log('SUCCESS')
+        }
+        else{
+            console.log('Not Successful')
+        }
+     })
+     .then(data => console.log(data))
+     .catch(error => console.error('ERROR'));
+}
+
+getCurrencyObject('https://dull-pink-sockeye-tie.cyclic.app/students/available');
