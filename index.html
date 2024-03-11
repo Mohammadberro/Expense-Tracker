@@ -85,7 +85,7 @@
                             <span class="title">
                                 Expense Total
                             </span>
-                            <span class="amount-value" id="total-expenses">
+                            <span class="amount-value" id="total-expense">
                                 $0.00
                             </span>
                         </div>
@@ -140,7 +140,7 @@
                             <button type="button" id="add-transaction" onclick="addPopup()">Add</button>
                             <div class="popup" id="transaction-popup">
                                 <h2>Enter Transaction Details<i class="fa-regular fa-x cancel-button" onclick="removePopup()"></i></h2>
-                                <form id="transaction-form" class="transaction-field">
+                                <div id="transaction-form" class="transaction-field">
                                     <div class="form-field">
                                       <h3>date:</h3><input id="date" type="datetime-local" required/>
                                     </div>
@@ -180,7 +180,7 @@
                                         <h3>Payee:</h3><input id="payee" type="text" placeholder="To" required/>
                                     </div>
                                     <button type="submit" onclick="addTransaction()">Add</button>
-                                </form>
+                                </div>
                             </div>
                         </td>
                        </tr> 

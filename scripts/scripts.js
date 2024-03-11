@@ -21,10 +21,10 @@
 let transactionNumber = 0;
 let allTransaction = [];
 let income = [];
-let expence = [];
+let expense = [];
 let incomeTotal = getSum(income);
-let expenceTotal = getSum(expence);
-let netIncome = incomeTotal + expenceTotal;
+let expenseTotal = getSum(expense);
+let netIncome = incomeTotal - expenseTotal;
 
 let transaction={
     id:"",
@@ -33,7 +33,7 @@ let transaction={
     transAmount: "",
     transCurrency: "",
     transPayer: "",
-    tranPayee: ""
+    transPayee: ""
 }
 
 let popupTransaction = document.getElementById("transaction-popup")
@@ -49,10 +49,29 @@ let payee = document.getElementById("payee");
 let transactionForm = document.getElementById("transaction-form")
 let bodyTable = document.getElementById("tbody");
 
+function loadData(){
+    allTransaction = JSON.parse(localStorage.getItem("transactions"));
+    transactionNumber = allTransaction.length;
+    console.log(allTransaction);
+}
+
+loadData();
+
+function renderLoadedData(){
+    for(i=0; i < allTransaction.length;i++){
+        addTable(allTransaction[i]);
+        updateIncome(allTransaction[i]);
+        renderNetIncomeData();
+    }
+}
+
+renderLoadedData();
+
 function getSum(array){
-    sum = 0;
+    sum=0;
     for(let i = 0; i < array.length; i++){
-        sum += array[i];
+        sum += Number(array[i]);
+        console.log(Number(array[i]));
     }
     return sum;
 }
@@ -66,23 +85,35 @@ function removePopup(){
 }
 
 function addTransaction(){
-    if (isFormEmpty){
-        return;
+
+    if(formIsEmpty(transactionForm)){
+        alert("form is missing");
+    }
+
+    else if(transactionType.value.toUpperCase() != "EXPENSE" && transactionType.value.toUpperCase() != "INCOME"){
+        alert("Type should be: Expense or Income");
+    }
+    
+    else if(currencyPaid.value.toUpperCase() != "USD" && currencyPaid.value.toUpperCase() != "AED" && currencyPaid.value.toUpperCase() != "LBP" && currencyPaid.value.toUpperCase() != "EURO"){
+        alert("Currency is Invalid");
     }
 
     else{
         let newTransaction = transaction;
         newTransaction.id = transactionNumber;
         newTransaction.transDate = date.value;
-        newTransaction.transType = transactionType.value;
+        newTransaction.transType = transactionType.value.toUpperCase();
         newTransaction.transAmount = amount.value;
-        newTransaction.transCurrency = currencyPaid.value;
-        newTransaction.tranPayee = payee.value;
+        newTransaction.transCurrency = currencyPaid.value.toUpperCase();
+        newTransaction.transPayee = payee.value;
         newTransaction.transPayer = payer.value;
         transactionNumber += 1;
         console.log(newTransaction); 
         allTransaction.push(newTransaction);
+        saveTransactions(allTransaction);
         addTable(newTransaction);
+        updateIncome(newTransaction);
+        renderNetIncomeData();
         removePopup();
     }
 }
@@ -91,10 +122,10 @@ function addTable(newtrans){
     bodyTable.innerHTML += ` <tr id = "${newtrans.id}">
     <td id="tdate">${newtrans.transDate}</td>
     <td id="tTransactionType">${newtrans.transType}</td>
-    <td id="tAmount">${newtrans.transType}</td>
+    <td id="tAmount">${newtrans.transAmount}</td>
     <td id="tCurrency Paid">${newtrans.transCurrency}</td>
     <td id="tPayer">${newtrans.transPayer}</td>
-    <td id="tPayee">${newtrans.tranPayee}</td>
+    <td id="tPayee">${newtrans.transPayee}</td>
     <td id="tAction"><i class="fa-regular fa-pen-to-square"></i>
     <i class="fa-regular fa-xmark"></i>
     </td>
@@ -102,21 +133,43 @@ function addTable(newtrans){
     return;
 }
 
-// function openCurrencyMenu(){
-//     content.classList.add("display-content");
-// }
-
-
-function isFormEmpty() {  
-
-    var inputs = transactionForm.querySelectorAll('input'); 
-        
-    for (var i = 0; i < inputs.length; i++) { 
-        if (inputs[i].value.trim() !== '') { 
-            return false; 
-        } 
-    } 
-        
-    return true;
+function openCurrencyMenu(){
+    content.classList.add("display-content");
 }
 
+
+function formIsEmpty(form) { 
+    let inputs = form.getElementsByTagName('input')
+    console.log(inputs)
+  for (let i = 0; i < inputs.length; i++) { 
+    if (inputs[i].value.length == 0) return true; 
+  } 
+  return false; 
+}
+
+function renderNetIncomeData(){
+    incomeTotal = getSum(income);
+    expenseTotal = getSum(expense);
+    let netIncome = incomeTotal - expenseTotal;
+    incomeCard = document.getElementById('total-income');
+    expenseCard = document.getElementById('total-expense');
+    totalCard = document.getElementById('total');
+    incomeCard.innerText = `$${incomeTotal}.00`
+    expenseCard.innerText = `$${expenseTotal}.00`
+    totalCard.innerText = `$${netIncome}.00`
+    console.log(netIncome);
+    console.log(incomeTotal);
+}
+
+function saveTransactions(allTransaction){
+    localStorage.setItem("transactions", JSON.stringify(allTransaction));
+}
+
+function updateIncome(transaction){
+    if (transaction.transType == "EXPENSE"){
+        expense.push(transaction.transAmount);
+    }
+    else{
+        income.push(transaction.transAmount);
+    }
+}
