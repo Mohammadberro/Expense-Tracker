@@ -58,11 +58,12 @@
             </div>
             <div class="dropdown-div">
             <ul>
-                <li><a id="EURO" class="active-currency" onclick="UpdateCurrency(this)">USD</a>
+                <li><a href="#">Currency</a>
                 <ul class="dropdown">
-                   <li><a id="EURO" onclick="UpdateCurrency(this)">EURO</a></li>
-                   <li><a id="LBP" onclick="UpdateCurrency(this)">LBP</a></li>
-                   <li><a id="AED" onclick="UpdateCurrency(this)">AED</a></li>
+                    <li><a id="USD"onclick="updateCurrency('USD')">USD</a></li>
+                   <li><a id="EURO" onclick="updateCurrency('EURO')">EURO</a></li>
+                   <li><a id="LBP" onclick="updateCurrency('LBP')">LBP</a></li>
+                   <li><a id="AED" onclick="updateCurrency('AED')">AED</a></li>
                 </ul>
                 </li>
                 </div>
@@ -150,7 +151,7 @@
                                     <td id="tPayer">2</td>
                                     <td id="tPayee">2</td>
                                     <td id="tAction"><i class="fa-regular fa-pen-to-square row-edit"></i>
-                                    <i id= "row-remover" class="fa-regular fa-xmark row-remove" onclick="removeRow(this.id)"></i>
+                                    <i class="fa-regular fa-xmark row-remove"></i>
                                     </td>
                                     </tr>
                         </tbody>

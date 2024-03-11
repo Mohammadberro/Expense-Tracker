@@ -47,7 +47,8 @@ let payer = document.getElementById("payer");
 let payee = document.getElementById("payee");
 let transactionForm = document.getElementById("transaction-form")
 let bodyTable = document.getElementById("tbody");
-const rowRemover = document.querySelectorAll(".row-remove");
+let rowRemover = document.querySelectorAll("row-remove");
+console.log(rowRemover);
 
 function loadData(){
     allTransaction = JSON.parse(localStorage.getItem("transactions"));
@@ -126,8 +127,8 @@ function addTable(newtrans){
     <td id="tCurrency Paid">${newtrans.transCurrency}</td>
     <td id="tPayer">${newtrans.transPayer}</td>
     <td id="tPayee">${newtrans.transPayee}</td>
-    <td id="tAction"><i class="fa-regular fa-pen-to-square"></i>
-    <i class="fa-regular fa-xmark"></i>
+    <td id="tAction"><i class="fa-regular fa-pen-to-square row-edit"></i>
+    <i id= "row-remover" class="fa-regular fa-xmark row-remove"></i>
     </td>
     </tr> `;
     return;
@@ -174,27 +175,52 @@ function updateIncome(transaction){
     }
 }
 
-function removeRow(id){
-    id.closest('tr').remove;
-}
-
-// function updateCurrency(this){
-//     newCurrency = this.innerText
-
+// function removeRow(){
+//     e.closest('tr').remove;
 // }
 
-function getCurrencyObject(URL){
-    let currencyData = fetch(URL)
-     .then(res =>{
-        if(res.ok){
-            console.log('SUCCESS')
+rowRemover.forEach((element) => {
+    element.addEventListener('click', (e) => {
+        bodyTable.innerHTML = '';
+        let targetedId = e.target.closest('tr').id;
+        console.log(targetedId);
+        for(i=0; i < allTransaction.length; i++){
+            if(allTransaction[i].id == targetedId){
+                delete allTransaction[i];
+            }
         }
-        else{
-            console.log('Not Successful')
+        for(i=0; i < allTransaction.length;i++){
+            allTransaction[i].transCurrency = currency;
+            addTable(allTransaction[i]);
+            // updateIncome(allTransaction[i]);
+            // renderNetIncomeData();
         }
-     })
-     .then(data => console.log(data))
-     .catch(error => console.error('ERROR'));
+    });
+});
+
+
+function updateCurrency(currency){
+    bodyTable.innerHTML = '';
+    let newCurrency = currency;
+    console.log(newCurrency);
+    for(i=0; i < allTransaction.length;i++){
+        allTransaction[i].transCurrency = currency;
+        addTable(allTransaction[i]);
+        // updateIncome(allTransaction[i]);
+        // renderNetIncomeData();
+    }
+
 }
 
-getCurrencyObject('https://dull-pink-sockeye-tie.cyclic.app/students/available');
+async function getCurrencyObject(URL){
+    const response = await fetch(URL);
+    const currencyInfo = await response.json();
+    return currencyInfo;
+    //  .then(res => res.json())
+    //  .then(data => console.log(data))
+    //  .catch(error => console.error('ERROR'));
+    //  return data;
+}
+
+let currencyInfo = getCurrencyObject('https://dull-pink-sockeye-tie.cyclic.app/students/available');
+console.log(currencyInfo);
