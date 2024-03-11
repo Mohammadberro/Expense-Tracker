@@ -322,9 +322,13 @@ tfoot td{
         font-size: 17px;
 }
 
+.table-container button:hover{
+    opacity: 60%;
+    transition-duration: 0.2s;
+}
+
 .popup{
     width: 60vw;
-    height: 60vh;
     background-color: rgba(113, 99, 186, 255);
     border-radius: 10px;
     position: absolute;
@@ -352,14 +356,27 @@ tfoot td{
 }
 
 .popup h2{
-    font-size: 38px;
+    font-size: 35px;
+    font-weight: 600;
+    padding: 1rem;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+}
+
+
+
+
+.popup h3{
+    width: 20%;
+    font-size: 16px;
     font-weight: 500;
-    margin: 30px 0 10px;
+    margin: auto;
+
 }
 
 .popup button{
-    width: 100%;
-    margin: 50px 0px;
+    width: 20%;
     padding: 10px 0px;
     background-color: green;
     border: 0;
@@ -370,4 +387,103 @@ tfoot td{
     box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
 }
 
- 
+.popup button:hover{
+    opacity: 70%;
+    transition: 0.3s;
+}
+
+.transaction-field .form-field {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    margin-bottom: 1rem;
+    position: relative;
+  }
+
+.transaction-field input {
+    font-family: inherit;
+    width: 90%;
+    margin-left: 2rem;
+    outline: none;
+    background-color: #fff;
+    border-radius: 4px;
+    border: none;
+    display: block;
+    padding: 0.9rem 0.7rem;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+    font-size: 17px;
+    color: #4A4A4A;
+    text-indent: 40px;
+  }
+
+/* .dropdown{
+    display: inline-block;
+}
+
+.dropdown button{
+    background: #fff;
+    color:black;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+
+.dropdown a{
+    display: block;
+    color: black;
+    text-decoration: none;
+    padding: 10px 15px;
+  } */
+
+/* .content{
+    visibility: hidden;
+    position: absolute;
+    margin: auto;
+    background-color: #fff;
+    min-width: 100px;
+    box-shadow: 2px 2px 5px black;
+    border-radius: 4px;
+} */
+/* .content li{
+    padding: 0.2rem;
+    margin: 8px 0px;
+    border-radius: 8px;
+    transition: all ease-in-out;
+    transition-duration: 0.5s;
+    text-decoration: none;
+    outline: none;
+    list-style-type: none;
+    background: #fff;
+  } */
+
+/* .dropdown:hover .content{
+    display: block;
+} */
+/* 
+.display-content{
+    visibility: visible;
+    position: absolute;
+    right: 0;
+}
+
+.dropdown:hover button{
+    background-color: hsl(0, 0%, 70%);
+}
+
+.dropdown a:hover{
+    background-color: hsl(0, 0%, 70%);
+} */
+
+.cancel-button{
+    font-size: 24px;
+    color: red;
+    padding-left: 20px;
+    padding-bottom: 20px;
+    cursor: pointer;
+}
